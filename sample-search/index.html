@@ -24,7 +24,19 @@
 
         <main>
             <div id="left-rail">
-                <span class="results-stats">Displaying results for query <span id="query-text">?</span></span>
+
+                <span id="landing-instructions">
+                    <p>
+                    <strong>This is a basic JavaScript-driven webpage that shows you how to integrate LogUI into your application.</strong>
+                    View the developer console in your browser to check that the LogUI client has started.
+                    You can then start interacting with the query box above, and type a query. Submit the query and watch the console as you interact with elements on the page.<br />
+                    </p>
+                    <p>
+                    You can look at the <code>driver.js</code> module for insight into how you can control the LogUI client library, and what you need to pass to it. Tweak the settings and see what changes in the logged interactions.
+                    </p>
+                </span>
+
+                <span class="results-stats">Results for <span id="query-text">?</span>, appended after DOM load</span>
 
                 <ul class="results" id="left-rail-results">
                     <!-- Added programmatically -->

@@ -26,6 +26,9 @@ function submitForm(e) {
     
         addFakeResults();
         document.querySelector('#submit-button').disabled = false;
+
+        document.querySelector('#landing-instructions').style.display = 'none';
+        document.querySelector('.results-stats').style.display = 'block';
     },
     350);
 }
