@@ -1,10 +1,18 @@
-document.addEventListener('DOMContentLoaded', function() {
-    
-    let formElement = document.querySelector('#search-form');
+var USER_ID = 123; // Sample data to use for app-specific data.
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Adds an event listener to form submission (to do the DOM manipulation for the demo page)
+    let formElement = document.querySelector('#search-form');
     formElement.addEventListener('submit', submitForm);
+
+    // LogUI control code
+    startLogUIClient();
 });
 
+/*
+    Handle a fake form submission.
+    This simply does some DOM manipulation by creating new elements.
+*/
 function submitForm(e) {
     e.preventDefault();
 
@@ -33,6 +41,9 @@ function submitForm(e) {
     350);
 }
 
+/*
+    Adds five fake results to the DOM.
+*/
 function addFakeResults() {
     let fakeResults = [
         `<li data-rank="1">
@@ -76,3 +87,165 @@ function appendFakeResult(markupString) {
 
     resultsContainer.appendChild(tempContainer.firstChild);
 }
+
+/*
+    A sample function that shows you how to control the LogUI library -- specifically, starting it.
+*/
+function startLogUIClient() {
+    if (window.LogUI) {
+        // Here, LogUI is present, so we can attempt to instantiate it.
+        let configurationObject = {
+            logUIConfiguration: {
+                endpoint: 'ws://linuxvm:8000/ws/endpoint/',
+                authenticationToken: 'eyJ0eXBlIjoibG9nVUktYXV0aGVudGljYXRpb24tb2JqZWN0IiwiYXBwbGljYXRpb25JRCI6IjJhZGZkOGEyLWRlOWUtNDRiNS05ZTg2LTAzNTI4OGY2ZTcxZiIsImZsaWdodElEIjoiZWZmMWQwNDEtNmUzZS00NmFmLTk1MTAtOWRlNWUwNTc4MGExIn0:1lPXp2:v9gt6oZNSUtEr9UkXsm406FTyrl65DcDrPJrTQZ24MQ',
+                verbose: true,
+                browserEvents: {
+                    blockEventBubbling: true,
+                    eventsWhileScrolling: true,
+                    URLChanges: true,
+                    contextMenu: true,
+                    pageFocus: true,
+                    trackCursor: false,
+                    cursorUpdateFrequency: 4000,
+                    cursorLeavingPage: true,
+                },
+            },
+            applicationSpecificData: {
+                userID: USER_ID,
+            },
+            trackingConfiguration: {
+                'querybox-focus': {
+                    selector: '#input-box',
+                    event: 'focus',
+                    name: 'QUERYBOX_FOCUS'
+                },
+                'querybox-losefocus': {
+                    selector: '#input-box',
+                    event: 'blur',
+                    name: 'QUERYBOX_BLUR'
+                },
+                'querybox-change': {
+                    selector: '#input-box',
+                    event: 'keyup',
+                    name: 'QUERYBOX_CHANGE',
+                    metadata: [
+                        {
+                            nameForLog: 'value',
+                            sourcer: 'elementProperty',
+                            lookFor: 'value',
+                        }
+                    ]
+                },
+                'query-submission': {
+                    selector: '#search-form',
+                    event: 'submit',
+                    name: 'QUERY_SUBMITTED',
+                },
+                'left-rail-item-mousemovements': {
+                    selector: '#left-rail-results li',
+                    event: 'mouseHover',
+                    properties: {
+                        mouseenter: {
+                            name: 'TEST_BOX_MOUSE_IN',
+                        },
+                        mouseleave: {
+                            name: 'TEST_BOX_MOUSE_OUT',
+                        }
+                    },
+                },
+                'left-rail-item-mouseclick': {
+                    selector: '#left-rail-results li span.title a',
+                    event: 'contextmenu',
+                },
+                'entity-mousemovements': {
+                    selector: '#entity-card',
+                    event: 'mouseHover',
+                    properties: {
+                        mouseenter: {
+                            name: 'ENTITY_CARD_HOVER_IN',
+                        },
+                        mouseleave: {
+                            name: 'ENTITY_CARD_HOVER_OUT',
+                        }
+                    },
+                }
+            },
+        };
+
+        LogUI.init(configurationObject);
+        return;
+    }
+    
+    throw Error("We can't find the LogUI client library. Did you include the logui.bundle.js file in the static directory?");
+}
+
+
+// var config = {
+//     logUIConfiguration: {
+//         endpoint: 'ws://linuxvm:8000/ws/endpoint/',
+//         authenticationToken: 'eyJ0eXBlIjoibG9nVUktYXV0aGVudGljYXRpb24tb2JqZWN0IiwiYXBwbGljYXRpb25JRCI6IjJhZGZkOGEyLWRlOWUtNDRiNS05ZTg2LTAzNTI4OGY2ZTcxZiIsImZsaWdodElEIjoiZWZmMWQwNDEtNmUzZS00NmFmLTk1MTAtOWRlNWUwNTc4MGExIn0:1lPSYp:vP5fCsqHptdDQprBUycyE1sfHohsuHmmN2Adhp47Cd4',
+//         verbose: true,
+
+//         browserEvents: {
+//             blockEventBubbling: true,
+//             eventsWhileScrolling: true,
+//             URLChanges: true,
+//             contextMenu: true,
+//             pageFocus: true,
+//             trackCursor: true,
+//             cursorUpdateFrequency: 2000,
+//             cursorLeavingPage: true,
+//         }
+//     },
+//     applicationSpecificData: {
+//         userID: 'userid',
+//         condition: 3,
+//         rotation: 1,
+//     },
+//     trackingConfiguration: {
+//         'testBoxHover': {
+//             selector: '.test',
+//             event: 'mouseHover',
+//             properties: {
+//                 blockEventBubbling: true,
+//                 mouseover: {
+//                     name: 'TEST_BOX_MOUSE_IN',
+//                 },
+//                 mouseout: {
+//                     name: 'TEST_BOX_MOUSE_OUT',
+//                 }
+//             },
+//             metadata: [
+//                 {
+//                     logAs: 'LOG_NAME',
+//                     source: 'elementAttribute',
+//                     find: 'attributeName'
+//                 }
+//             ],
+//         },
+
+//         'textBox1Click': {
+//             selector: '#test-click-box1',
+//             event: 'click',
+//             name: 'BOX_1_CLICK!',
+//         },
+
+//         'clockHover': {
+//             selector: '#test-reactapp-clock',
+//             event: 'mouseover',
+//             name: 'CLOCK_HOVER_TIME',
+//             metadata: [
+//                 {
+//                     nameForLog: 'CURRENT_TIME',
+//                     sourcer: 'reactComponentState',
+//                     lookFor: 'time',
+//                 },
+//                 {
+//                     nameForLog: 'PROP_TEST',
+//                     sourcer: 'reactComponentProp',
+//                     lookFor: 'sampleProp',
+//                 }
+//             ],
+//         },
+//     },
+// };

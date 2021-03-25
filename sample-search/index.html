@@ -16,7 +16,7 @@
             <form id="search-form">
                 <img src="static/logo.svg" alt="Sample Search" />
                 <div>
-                    <input id="input-box" />
+                    <input id="input-box" data-test="lol" />
                     <button id="submit-button">Search</button>
                 </div>
             </form>
@@ -26,6 +26,9 @@
             <div id="left-rail">
 
                 <span id="landing-instructions">
+                    <p>
+                    <strong style="color: red;">Before you start, put a <code>logui.bundle.js</code> file into the <code>static</code> directory!</strong>
+                    </p>
                     <p>
                     <strong>This is a basic JavaScript-driven webpage that shows you how to integrate LogUI into your application.</strong>
                     View the developer console in your browser to check that the LogUI client has started.
@@ -67,6 +70,7 @@
 
     </body>
 
+    <script src="./static/logui.bundle.js"></script>
     <script src="./static/driver.js"></script>
 
 </html>
