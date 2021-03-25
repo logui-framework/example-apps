@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link rel="stylesheet" type="text/css" href="static/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="static/styles.css" />
+        <title>SampleSearch</title>
+    </head>
+
+    <body>
+
+        <header>
+            <form id="search-form">
+                <img src="static/logo.svg" alt="Sample Search" />
+                <div>
+                    <input id="input-box" />
+                    <button id="submit-button">Search</button>
+                </div>
+            </form>
+        </header>
+
+        <main>
+            <div id="left-rail">
+                <span class="results-stats">Displaying results for query <span id="query-text">?</span></span>
+
+                <ul class="results" id="left-rail-results">
+                    <!-- Added programmatically -->
+                </ul>
+            </div>
+
+            <div id="right-rail">
+                <div class="entity" id="entity-card">
+                    <img src="static/delft.jpg" alt="Delft" />
+                    <span class="header">Delft</span>
+                    <span class="subheader">City in The Netherlands</span>
+                    <span class="blurb">Delft, a canal-ringed city in the western Netherlands, is known as the manufacturing base for Delftware, hand-painted blue-and-white pottery. In its old town, the medieval Oude Kerk is the burial site of native son and Dutch Master painter Johannes Vermeer. Once the seat of the royal House of Orange, the 15th-century Nieuwe Kerk houses the family's tombs and overlooks Delft's lively market square.</span>
+                    <span class="attribute">
+                        <span class="type">Area</span>
+                        <span class="value">24.06 sq km</span>
+                    </span>
+                    <span class="attribute">
+                        <span class="type">City Hall</span>
+                        <span class="value">Delft City Hall</span>
+                    </span>
+                    <span class="attribute">
+                        <span class="type">Province</span>
+                        <span class="value">South Holland</span>
+                    </span>
+                </div>
+            </div>
+        </main>
+
+    </body>
+
+    <script src="./static/driver.js"></script>
+
+</html>
