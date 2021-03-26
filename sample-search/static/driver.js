@@ -105,7 +105,7 @@ function startLogUIClient() {
                     URLChanges: true,
                     contextMenu: true,
                     pageFocus: true,
-                    trackCursor: false,
+                    trackCursor: true,
                     cursorUpdateFrequency: 4000,
                     cursorLeavingPage: true,
                 },
@@ -138,20 +138,37 @@ function startLogUIClient() {
                 },
                 'query-submission': {
                     selector: '#search-form',
-                    event: 'submit',
+                    event: 'formSubmission',
                     name: 'QUERY_SUBMITTED',
+                    properties: {
+                        includeValues: [
+                            {
+                                nameForLog: 'completeQuery',
+                                sourcer: 'elementProperty',
+                                selector: '#input-box',
+                                lookFor: 'value',
+                            }
+                        ]
+                    }
                 },
                 'left-rail-item-mousemovements': {
                     selector: '#left-rail-results li',
                     event: 'mouseHover',
                     properties: {
                         mouseenter: {
-                            name: 'TEST_BOX_MOUSE_IN',
+                            name: 'LEFT_RAIL_RESULT_HOVER_IN',
                         },
                         mouseleave: {
-                            name: 'TEST_BOX_MOUSE_OUT',
+                            name: 'LEFT_RAIL_RESULT_HOVER_OUT',
                         }
                     },
+                    metadata: [
+                        {
+                            nameForLog: 'resultRank',
+                            sourcer: 'elementAttribute',
+                            lookFor: 'data-rank',
+                        }
+                    ]
                 },
                 'left-rail-item-mouseclick': {
                     selector: '#left-rail-results li span.title a',
@@ -178,74 +195,3 @@ function startLogUIClient() {
     
     throw Error("We can't find the LogUI client library. Did you include the logui.bundle.js file in the static directory?");
 }
-
-
-// var config = {
-//     logUIConfiguration: {
-//         endpoint: 'ws://linuxvm:8000/ws/endpoint/',
-//         authenticationToken: 'eyJ0eXBlIjoibG9nVUktYXV0aGVudGljYXRpb24tb2JqZWN0IiwiYXBwbGljYXRpb25JRCI6IjJhZGZkOGEyLWRlOWUtNDRiNS05ZTg2LTAzNTI4OGY2ZTcxZiIsImZsaWdodElEIjoiZWZmMWQwNDEtNmUzZS00NmFmLTk1MTAtOWRlNWUwNTc4MGExIn0:1lPSYp:vP5fCsqHptdDQprBUycyE1sfHohsuHmmN2Adhp47Cd4',
-//         verbose: true,
-
-//         browserEvents: {
-//             blockEventBubbling: true,
-//             eventsWhileScrolling: true,
-//             URLChanges: true,
-//             contextMenu: true,
-//             pageFocus: true,
-//             trackCursor: true,
-//             cursorUpdateFrequency: 2000,
-//             cursorLeavingPage: true,
-//         }
-//     },
-//     applicationSpecificData: {
-//         userID: 'userid',
-//         condition: 3,
-//         rotation: 1,
-//     },
-//     trackingConfiguration: {
-//         'testBoxHover': {
-//             selector: '.test',
-//             event: 'mouseHover',
-//             properties: {
-//                 blockEventBubbling: true,
-//                 mouseover: {
-//                     name: 'TEST_BOX_MOUSE_IN',
-//                 },
-//                 mouseout: {
-//                     name: 'TEST_BOX_MOUSE_OUT',
-//                 }
-//             },
-//             metadata: [
-//                 {
-//                     logAs: 'LOG_NAME',
-//                     source: 'elementAttribute',
-//                     find: 'attributeName'
-//                 }
-//             ],
-//         },
-
-//         'textBox1Click': {
-//             selector: '#test-click-box1',
-//             event: 'click',
-//             name: 'BOX_1_CLICK!',
-//         },
-
-//         'clockHover': {
-//             selector: '#test-reactapp-clock',
-//             event: 'mouseover',
-//             name: 'CLOCK_HOVER_TIME',
-//             metadata: [
-//                 {
-//                     nameForLog: 'CURRENT_TIME',
-//                     sourcer: 'reactComponentState',
-//                     lookFor: 'time',
-//                 },
-//                 {
-//                     nameForLog: 'PROP_TEST',
-//                     sourcer: 'reactComponentProp',
-//                     lookFor: 'sampleProp',
-//                 }
-//             ],
-//         },
-//     },
-// };
