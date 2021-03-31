@@ -64,16 +64,20 @@
             },
             applicationSpecificData: {},
             trackingConfiguration: {
+                // Low-level event, on ANY item on the page, fire a ANY_CLICK event.
                 'all-click': {
                     selector: '*',
                     event: 'click',
                     name: 'ANY_CLICK',
                 },
+                // Specific for the green box, override and register a GREEN_BOX_CLICK event (instead of ANY_CLICK).
                 'green-click': {
                     selector: '#green-box',
                     event: 'click',
                     name: 'GREEN_BOX_CLICK',
                 },
+                // Dealing with hovering, hover on a li child in the <ul> element.
+                // Includes example of a metadata sourcer.
                 'list-hover': {
                     selector: '#another-box ul li',
                     event: 'mouseHover',
@@ -93,6 +97,8 @@
                         }
                     ],
                 },
+                // Override the <li> hover event -- replace for the first item in the list.
+                // Has a special FIRST_ITEM_TITLE_HOVER_X event.
                 'first-item-title-hover': {
                     selector: '#first-title',
                     event: 'mouseHover',
@@ -105,6 +111,7 @@
                         }
                     },
                 },
+                // Overrides the global ANY_CLICK event on the first item in the <UL>.
                 'first-item-title-click': {
                     selector: '#first-title',
                     event: 'click',
