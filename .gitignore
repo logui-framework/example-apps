@@ -1,3 +1,5 @@
 # System databases
 Thumbs.db
 .DS_Store
+
+**/logui.bundle.js
