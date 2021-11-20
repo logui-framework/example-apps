@@ -97,7 +97,7 @@ function startLogUIClient() {
         let configurationObject = {
             logUIConfiguration: {
                 endpoint: 'ws://linuxvm:8000/ws/endpoint/',
-                authenticationToken: 'eyJ0eXBlIjoibG9nVUktYXV0aGVudGljYXRpb24tb2JqZWN0IiwiYXBwbGljYXRpb25JRCI6IjJhZGZkOGEyLWRlOWUtNDRiNS05ZTg2LTAzNTI4OGY2ZTcxZiIsImZsaWdodElEIjoiZWZmMWQwNDEtNmUzZS00NmFmLTk1MTAtOWRlNWUwNTc4MGExIn0:1lPXp2:v9gt6oZNSUtEr9UkXsm406FTyrl65DcDrPJrTQZ24MQ',
+                authorisationToken: 'eyJ0eXBlIjoibG9nVUktYXV0aG9yaXNhdGlvbi1vYmplY3QiLCJhcHBsaWNhdGlvbklEIjoiMDA0MWExMzctOTgzNy00OTNiLWJhZWQtMGYzODNiZTlkYTYyIiwiZmxpZ2h0SUQiOiI3MjZiNzMzMi0zOTY2LTRjYzEtODM1NS1hZGIyMjJjY2EwNWQifQ:1mQefx:hSDx0_ZwR_XQnkrQd2d8zREt2de4amJNh6cPb-usFm4',
                 verbose: true,
                 browserEvents: {
                     blockEventBubbling: true,
